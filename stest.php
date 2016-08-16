@@ -2,9 +2,9 @@
 //*** Время генерации страницы сервером в микросекундах
 $time=microtime(true);
 //*** Параметры подключения к dbmysql
-$db_host='127.0.0.1';
-$db_user='mishele';
-$db_pass='1437';
+$db_host=' ';
+$db_user=' ';
+$db_pass=' ';
 ?>
 
 <!DOCTYPE html>
