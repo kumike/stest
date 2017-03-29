@@ -1,10 +1,10 @@
 <?php 
 //*** Время генерации страницы сервером в микросекундах
-$time=microtime(true);
+$startTime=microtime(true);
 //*** Параметры подключения к dbmysql
-$db_host=' ';
-$db_user=' ';
-$db_pass=' ';
+$db_host="localhost";
+$db_user="mishele";
+$db_pass="1437";
 ?>
 
 <!DOCTYPE html>
@@ -66,10 +66,73 @@ legend{
 </style>
 <title>Инфа про версии програм на сервере</title>
 </head>
-<body>
+<body onload="startTime()">
+<script>
+//*** скриптик интерактивных часов
+function startTime(){
+    var today=new Date();
+    var h=today.getHours();
+    var m=today.getMinutes();
+    var s=today.getSeconds();
+    //*** добавить нуль перед числами <10
+    h=checkTime(h);
+    m=checkTime(m);
+    s=checkTime(s);
+    document.getElementById('time').innerHTML=h+':'+m+':'+s;
+    t=setTimeout('startTime()',500);
+}
+function checkTime(i){
+    if (i<10){
+      i="0" + i;
+      }
+    return i;
+}
+</script>
 <?php
-//*** информация о веб сервере, php_uname() выдает информацию об операционной системе на которой запущен сервер
-echo '<span class="time">'.date('d-m-Y l d F H:i:s')."<br></span><br>\n<hr>\n".
+//*** функция для определения дня недели по-русски
+function getDayRus(){
+//*** массив с названиями дней недели
+$days = array(
+        'Воскресенье', 'Понедельник',
+        'Вторник', 'Среда',
+        'Четверг', 'Пятница', 'Суббота'
+        );
+//*** номер дня недели с 0 до 6, 0 - воскресенье, 6 - суббота
+$num_day = date('w');
+//*** получаем название дня из массива
+$name_day = $days[$num_day];
+//*** вернем название дня
+return $name_day;
+}
+//*** переменная содержит названия текущего дня недели на русском.
+$dayRus=getDayRus();
+
+//*** функция для получения названия месяца по-русски
+function getMonthRus(){
+//*** номер текущего месяца без ведущего ноля
+$num_month = date('n');
+//*** массив с названиями месяцев
+$monthes = array(
+           1 => 'Января', 2 => 'Февраля', 3 => 'Марта',
+           4 => 'Апреля', 5 => 'Мая', 6 => 'Июня',
+           7 => 'Июля', 8 => 'Августа',9 => 'Сентября',
+           10 => 'Октября', 11 => 'Ноября',
+           12 => 'Декабря'
+           );
+//*** получаем название месяца из массива
+$name_month = $monthes[$num_month];
+//*** вернем название месяца
+return $name_month;
+}
+//*** переменная содержит название текущего месяца по русски.
+$monthRus=getMonthRus();
+//*** выводит номер дня в месяце, текущее число
+$numDay=date('d');
+//*** выводит номер текущего года, 4 цифры
+$year=date('Y');
+//*** первая строчка выводит текущий день недели, число, месяц, год и время
+//*** дальше информация о веб сервере, php_uname() выдает информацию об операционной системе на которой запущен сервер
+echo '<span class="time">'.$dayRus." ".$numDay." ".$monthRus." ".$year." "."<span id='time'></span>"."<br></span><br>\n<hr>\n".
      '<span class="color">Операционная система:</span><span class="color0"> '.php_uname()."</span><br>\n".
      '<span class="color">Сервер:</span><span class="color0"> '.$_SERVER['SERVER_SOFTWARE']."</span>\n<hr>\n";
 //*** расчёт свободного места на веб сервере.
@@ -87,12 +150,10 @@ $mbtspace=round(($dts/$powmb),1);
 if($gigspace<0.99&$gigtspace<0.99){
 echo '<span class="color">Disc free space:</span><span class="color0"> '.$mbspace."Mb</span><br>\n".
      '<span class="color">Disc total space:</span><span class="color0"> '.$mbtspace."Mb</span><br>\n"; 
-}
-elseif($gigspace<0.99&$gigtspace>=0.99){
+}elseif($gigspace<0.99&$gigtspace>=0.99){
 echo '<span class="color">Disc free space:</span><span class="color0"> '.$mbspace."Mb</span><br>\n".
      '<span class="color">Disc total space:</span><span class="color0"> '.$gigtspace."Gb</span><br>\n";
-} 
-else
+}else
 echo '<span class="color">Disc free space:</span><span class="color0"> '.$gigspace."Gb</span><br>\n".
      '<span class="color">Disc total space:</span><span class="color0"> '.$gigtspace."Gb</span>\n<hr>\n<br>\n";
 //*** Версии пхп мускульи, пдо и проверка загруженых расширений, implode преобразует масив в строку explode строку в масив
@@ -122,7 +183,7 @@ echo '<span class="color">Текущая кодировка MYSQL:</span><span c
 //*** Закрываем соединение с базой
 $link->close();
 //*** Собственно вывод результата генерации времени исполнения скрипта, с округлением числа до трёх знаков после запятой.
-echo '<span class="color">Страница сгенерирована за:</span><span class="color0"> '.round((microtime(true)-$time),3)." сек.</span><br>\n";
+echo '<span class="color">Страница сгенерирована за:</span><span class="color0"> '.round((microtime(true)-$startTime),3)." сек.</span><br>\n";
 ?>
 </body>
 </html>
