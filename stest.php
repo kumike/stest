@@ -3,8 +3,8 @@
 $startTime=microtime(true);
 //*** Параметры подключения к dbmysql
 $db_host="localhost";
-$db_user="mishele";
-$db_pass="1437";
+$db_user="user";
+$db_pass="password";
 ?>
 
 <!DOCTYPE html>
