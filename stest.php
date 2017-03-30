@@ -132,7 +132,7 @@ $numDay=date('d');
 $year=date('Y');
 //*** первая строчка выводит текущий день недели, число, месяц, год и время
 //*** дальше информация о веб сервере, php_uname() выдает информацию об операционной системе на которой запущен сервер
-echo '<span class="time">'.$dayRus." ".$numDay." ".$monthRus." ".$year." "."<span id='time'></span>"."<br></span><br>\n<hr>\n".
+echo '<span class="time">'.$dayRus." ".$numDay." ".$monthRus." ".$year." "."<span id='time'></span><br></span><br>\n<hr>\n".
      '<span class="color">Операционная система:</span><span class="color0"> '.php_uname()."</span><br>\n".
      '<span class="color">Сервер:</span><span class="color0"> '.$_SERVER['SERVER_SOFTWARE']."</span>\n<hr>\n";
 //*** расчёт свободного места на веб сервере.
