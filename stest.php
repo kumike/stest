@@ -1,10 +1,10 @@
 <?php 
 //*** Время генерации страницы сервером в микросекундах
-$startTime=microtime(true);
+$Time=microtime(true);
 //*** Параметры подключения к dbmysql
 $db_host="localhost";
-$db_user="user";
-$db_pass="password";
+$db_user="mishele";
+$db_pass="1437";
 ?>
 
 <!DOCTYPE html>
@@ -184,7 +184,7 @@ echo '<span class="color">Текущая кодировка MYSQL:</span><span c
 //*** Закрываем соединение с базой
 $link->close();
 //*** Собственно вывод результата генерации времени исполнения скрипта, с округлением числа до трёх знаков после запятой.
-echo '<span class="color">Страница сгенерирована за:</span><span class="color0"> '.round((microtime(true)-$startTime),3)." сек.</span><br>\n";
+echo '<span class="color">Страница сгенерирована за:</span><span class="color0"> '.round((microtime(true)-$Time),3)." сек.</span><br>\n";
 ?>
 </body>
 </html>
