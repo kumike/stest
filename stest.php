@@ -64,22 +64,19 @@ legend{
 	text-shadow:#3F2147 0 .15em .10em;
 }
 </style>
-<title>Инфа про версии програм на сервере</title>
-</head>
-<body onload="startTime()">
 <script>
 //*** скриптик интерактивных часов
 function startTime(){
-    var today=new Date();
-    var h=today.getHours();
-    var m=today.getMinutes();
-    var s=today.getSeconds();
+    var today=new Date(); //*** получить текущую дату и время
+    var h=today.getHours(); //*** выбрать значения часов
+    var m=today.getMinutes(); //*** минут
+    var s=today.getSeconds(); //*** секунд
     //*** добавить нуль перед числами <10
     h=checkTime(h);
     m=checkTime(m);
     s=checkTime(s);
-    document.getElementById('time').innerHTML=h+':'+m+':'+s;
-    t=setTimeout('startTime()',500);
+    document.getElementById('time').innerHTML=h+':'+m+':'+s; //*** найти элемент с id="time" и вставить значения
+    setTimeout(startTime, 1000); //*** вызвать функцию снова через 1 секунду
 }
 function checkTime(i){
     if (i<10){
@@ -87,20 +84,24 @@ function checkTime(i){
       }
     return i;
 }
+window.onload=startTime; //*** На­чать ото­бра­же­ние вре­ме­ни по­сле полной за­груз­ки до­ку­мен­та.
 </script>
+<title>Инфа про версии програм на сервере</title>
+</head>
+<body>
 <?php
 //*** функция для определения дня недели по-русски
 function getDayRus(){
 //*** массив с названиями дней недели
-$days = array(
+$days=array(
         'Воскресенье', 'Понедельник',
         'Вторник', 'Среда',
         'Четверг', 'Пятница', 'Суббота'
         );
 //*** номер дня недели с 0 до 6, 0 - воскресенье, 6 - суббота
-$num_day = date('w');
+$num_day=date('w');
 //*** получаем название дня из массива
-$name_day = $days[$num_day];
+$name_day=$days[$num_day];
 //*** вернем название дня
 return $name_day;
 }
@@ -110,9 +111,9 @@ $dayRus=getDayRus();
 //*** функция для получения названия месяца по-русски
 function getMonthRus(){
 //*** номер текущего месяца без ведущего ноля
-$num_month = date('n');
+$num_month=date('n');
 //*** массив с названиями месяцев
-$monthes = array(
+$monthes=array(
            1 => 'Января', 2 => 'Февраля', 3 => 'Марта',
            4 => 'Апреля', 5 => 'Мая', 6 => 'Июня',
            7 => 'Июля', 8 => 'Августа',9 => 'Сентября',
@@ -120,7 +121,7 @@ $monthes = array(
            12 => 'Декабря'
            );
 //*** получаем название месяца из массива
-$name_month = $monthes[$num_month];
+$name_month=$monthes[$num_month];
 //*** вернем название месяца
 return $name_month;
 }
@@ -136,8 +137,8 @@ echo '<span class="time">'.$dayRus." ".$numDay." ".$monthRus." ".$year." "."<spa
      '<span class="color">Операционная система:</span><span class="color0"> '.php_uname()."</span><br>\n".
      '<span class="color">Сервер:</span><span class="color0"> '.$_SERVER['SERVER_SOFTWARE']."</span>\n<hr>\n";
 //*** расчёт свободного места на веб сервере.
-$dfs=disk_free_space('/');
-$dts=disk_total_space('/');
+$dfs=disk_free_space('/');//*** осталось свободного места на диске в байтах
+$dts=disk_total_space('/');//*** всего доступного места на диске в байтах
 $powgig=pow(2,30);//*** вычисляем сколько в гигабайте байт 1073741824 байт в гиге, или 2^30
 $powmb=pow(2,20);//*** тоже что и сверху только для мегабайт
 //*** высчитиваем гигабайты и округляем до одного знака после запятой
@@ -166,7 +167,7 @@ echo '<fieldset><legend>PHP</legend>
      '<span class="color">Загруженные модули PHP:</span><span class="color0"><i> '.implode(", ",$mod)."</span></i><br>\n".
      '<span class="color">Всего модулей:</span><span class="color0"> '.count($mod)." шт.</span><br></fieldset><br>\n";
 //*** Подключение и вывод информации о подключение либо вывод ошибки подключения
-$link = new mysqli($db_host,$db_user,$db_pass);
+$link=new mysqli($db_host,$db_user,$db_pass);
 if ($link->connect_error){
     die('<span class="error">Ошибка подключения к MYSQL: ('.$link->connect_errno.') '.$link->connect_error)."</span>";
    }
