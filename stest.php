@@ -150,10 +150,10 @@ $mbtspace=round(($dts/$powmb),1);
 //*** выбираем как показать в мегабайтах или в гигабайтах, 0.99 остаток от 1гб
 if($gigspace<0.99&$gigtspace<0.99){
 echo '<span class="color">Disc free space:</span><span class="color0"> '.$mbspace."Mb</span><br>\n".
-     '<span class="color">Disc total space:</span><span class="color0"> '.$mbtspace."Mb</span>\n<hr><br>\n"; 
+     '<span class="color">Disc total space:</span><span class="color0"> '.$mbtspace."Mb</span>\n<hr>\n"; 
 }elseif($gigspace<0.99&$gigtspace>=0.99){
 echo '<span class="color">Disc free space:</span><span class="color0"> '.$mbspace."Mb</span><br>\n".
-     '<span class="color">Disc total space:</span><span class="color0"> '.$gigtspace."Gb</span>\n<hr><br>\n";
+     '<span class="color">Disc total space:</span><span class="color0"> '.$gigtspace."Gb</span>\n<hr>\n";
 }else
 echo '<span class="color">Disc free space:</span><span class="color0"> '.$gigspace."Gb</span><br>\n".
      '<span class="color">Disc total space:</span><span class="color0"> '.$gigtspace."Gb</span>\n<hr>\n";
