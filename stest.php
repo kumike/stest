@@ -136,16 +136,17 @@ $gigtspace=round(($dts/$powgig),1);
 //*** тоже только для мегабайт
 $mbspace=round(($dfs/$powmb),1);
 $mbtspace=round(($dts/$powmb),1);
-//*** выбираем как показать в мегабайтах или в гигабайтах, 0.99 остаток от 1гб
-if($gigspace<0.99&$gigtspace<0.99){
-echo '<span class="color">Disc free space:</span><span class="color0"> '.$mbspace."Mb</span><br>\n".
-     '<span class="color">Disc total space:</span><span class="color0"> '.$mbtspace."Mb</span>\n<hr>\n";
+//*** выбираем как показать в мегабайтах или в гигабайтах, 0.9 остаток от 1гб
+if($gigspace<0.9&$gigtspace<0.9){
+	echo '<span class="color">Disc free space:</span><span class="color0"> '.$mbspace."Mb</span><br>\n".
+		 '<span class="color">Disc total space:</span><span class="color0"> '.$mbtspace."Mb</span>\n<hr>\n";
 }elseif($gigspace<0.99&$gigtspace>=0.99){
-echo '<span class="color">Disc free space:</span><span class="color0"> '.$mbspace."Mb</span><br>\n".
-     '<span class="color">Disc total space:</span><span class="color0"> '.$gigtspace."Gb</span>\n<hr>\n";
-}else
-echo '<span class="color">Disc free space:</span><span class="color0"> '.$gigspace."Gb</span><br>\n".
-     '<span class="color">Disc total space:</span><span class="color0"> '.$gigtspace."Gb</span>\n<hr>\n";
+	echo '<span class="color">Disc free space:</span><span class="color0"> '.$mbspace."Mb</span><br>\n".
+		 '<span class="color">Disc total space:</span><span class="color0"> '.$gigtspace."Gb</span>\n<hr>\n";
+}else{
+	echo '<span class="color">Disc free space:</span><span class="color0"> '.$gigspace."Gb</span><br>\n".
+		 '<span class="color">Disc total space:</span><span class="color0"> '.$gigtspace."Gb</span>\n<hr>\n";
+}
 //*** Версии пхп мускульи, пдо и проверка загруженых расширений, implode преобразует масив в строку explode строку в масив
 $mod=get_loaded_extensions();
 echo "<fieldset>\n<legend>PHP</legend>\n".
@@ -158,7 +159,7 @@ echo "<fieldset>\n<legend>PHP</legend>\n".
 //*** Подключение и вывод информации о подключение либо вывод ошибки подключения
 $link=new mysqli($db_host,$db_user,$db_pass);
 if ($link->connect_error){
-  die('<span class="error">Ошибка подключения к MYSQL: ('.$link->connect_errno.') '.$link->connect_error)."</span>";
+	die('<span class="error">Ошибка подключения к MYSQL: ('.$link->connect_errno.') '.$link->connect_error)."</span>";
   }
 //*** Проверка версий клиента и сервера
 echo "<fieldset>\n<legend>MYSQL</legend>\n".
