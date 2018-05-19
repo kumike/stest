@@ -7,3 +7,5 @@ __//*** Параметры подключения к dbmysql, пример:__
 $db_host='127.0.0.1';   
 $db_user='user';   
 $db_pass='mystrongpassword ';   
+
+test2
