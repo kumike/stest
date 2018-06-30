@@ -138,6 +138,7 @@ echo '<span class="color">Disc free space:</span><span class="color0"> '.$mbspac
 } else {
 	echo '<span class="color">Disc free space:</span><span class="color0"> '.$gigspace."Gb</span><br>\n".
          '<span class="color">Disc total space:</span><span class="color0"> '.$gigtspace."Gb</span>\n<hr>\n";
+}
 //*** Версии пхп мускульи, пдо и проверка загруженых расширений, implode преобразует масив в строку explode строку в масив
 $mod = get_loaded_extensions();
 echo "<fieldset>\n<legend>PHP</legend>\n".
