@@ -66,21 +66,15 @@ legend{
 <script>
 //*** скриптик интерактивных часов
 function startTime(){
-    var today = new Date(); //*** получить текущую дату и время
-    var h = today.getHours(); //*** выбрать значения часов
-    var m = today.getMinutes(); //*** минут
-    var s = today.getSeconds(); //*** секунд
-    //*** добавить нуль перед числами <10
-    h = checkTime(h);
-    m = checkTime(m);
-    s = checkTime(s);
-    document.getElementById('time').innerHTML = h+':'+m+':'+s; //*** найти элемент с id="time" и вставить значения
+	now = new Date();
+	document.getElementById('time').innerHTML = checkTime(now.getHours())+':'+checkTime(now.getMinutes())+':'+checkTime(now.getSeconds());
     setTimeout(startTime, 1000); //*** вызвать функцию снова через 1 секунду
 }
+//*** функция добавляет ведущие ноли перед значением
 function checkTime(i){
-    if (i<10){
-      i = "0" + i;
-      }
+	if (i<10){
+		i = "0" + i;
+	}
     return i;
 }
 window.onload = startTime; //*** Начать отображение времени после полной загрузки доку­мента.
