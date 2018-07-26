@@ -71,7 +71,7 @@ legend{
 <script>
 //*** скриптик интерактивных часов
 function startTime(){
-	now = new Date();
+	var now = new Date();
 	document.getElementById('time').innerHTML = checkTime(now.getHours())+':'+checkTime(now.getMinutes())+':'+checkTime(now.getSeconds());
     setTimeout(startTime, 1000); //*** вызвать функцию снова через 1 секунду
 }
