@@ -32,6 +32,11 @@ hr{
 	font-size:1em;
 	text-shadow:#224500 0 .15em .10em;
 	color:#224500;
+	background: #ddf;        /* Светлый, голубовато-серыйфон */
+	padding: 4px;           /* Отступы вокруг */
+	border: solid #0066B9 1px; /* И сплошная черная рамка */
+	border-radius: 5px;     /* Закругленные углы */
+
 }
 .color{
 	font-style:normal;
